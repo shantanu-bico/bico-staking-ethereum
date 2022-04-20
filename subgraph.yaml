@@ -1,0 +1,56 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: StakingContract
+    network: kovan
+    source:
+      address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      abi: StakingContract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - AssetConfigUpdated
+        - AssetIndexUpdated
+        - Cooldown
+        - DelegateChanged
+        - DelegatedPowerChanged
+        - Redeem
+        - RewardsAccrued
+        - RewardsClaimed
+        - Staked
+        - Transfer
+        - UserIndexUpdated
+      abis:
+        - name: StakingContract
+          file: ./abis/StakingContract.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: AssetConfigUpdated(indexed address,uint256)
+          handler: handleAssetConfigUpdated
+        - event: AssetIndexUpdated(indexed address,uint256)
+          handler: handleAssetIndexUpdated
+        - event: Cooldown(indexed address)
+          handler: handleCooldown
+        - event: DelegateChanged(indexed address,indexed address,uint8)
+          handler: handleDelegateChanged
+        - event: DelegatedPowerChanged(indexed address,uint256,uint8)
+          handler: handleDelegatedPowerChanged
+        - event: Redeem(indexed address,indexed address,uint256)
+          handler: handleRedeem
+        - event: RewardsAccrued(address,uint256)
+          handler: handleRewardsAccrued
+        - event: RewardsClaimed(indexed address,indexed address,uint256)
+          handler: handleRewardsClaimed
+        - event: Staked(indexed address,indexed address,uint256)
+          handler: handleStaked
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: UserIndexUpdated(indexed address,indexed address,uint256)
+          handler: handleUserIndexUpdated
+      file: ./src/mapping.ts
