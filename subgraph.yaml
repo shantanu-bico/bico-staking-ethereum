@@ -1,13 +1,14 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: StakingContract
-    network: kovan
+    network: mainnet
     source:
-      address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      address: "0x710841ded0e8af62bb82480a7e21ab1722221ab0"
       abi: StakingContract
+      startBlock: 14611116
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
